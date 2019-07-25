@@ -23,6 +23,20 @@ export class Home extends React.Component {
 		c2: null,
 		c3: null
 	};
+	empate() {
+		let some = 0;
+		for (let key in this.virtualBoard) {
+			if (this.virtualBoard[key] == null) {
+				some++;
+			}
+		}
+		if (some >= 1) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
 	whoWon() {
 		if (
 			this.virtualBoard["a1"] == "X" &&
@@ -136,6 +150,8 @@ export class Home extends React.Component {
 		) {
 			this.setState({ won: true });
 			alert("you won");
+		} else if (this.empate()) {
+			alert("No body won, TIE");
 		}
 	}
 	mark(e) {
