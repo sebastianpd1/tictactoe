@@ -1,4 +1,5 @@
 import React from "react";
+import RefreshButton from "./refreshButton";
 
 //include images into your bundle
 import rigoImage from "../../img/rigo-baby.jpg";
@@ -23,6 +24,12 @@ export class Home extends React.Component {
 		c2: null,
 		c3: null
 	};
+	setTonull() {
+		for (let key in this.virtualBoard) {
+			this.virtualBoard[key] = null;
+			document.querySelector("#" + key).innerHTML = "";
+		}
+	}
 	empate() {
 		let some = 0;
 		for (let key in this.virtualBoard) {
@@ -177,6 +184,7 @@ export class Home extends React.Component {
 			});
 		}
 	}
+
 	render() {
 		return (
 			<div className="container">
@@ -235,6 +243,7 @@ export class Home extends React.Component {
 								onClick={e => this.mark(e)}
 								id="c3"
 							/>
+							<RefreshButton refresh={() => this.setTonull()} />
 						</div>
 					</div>
 				</div>
@@ -242,3 +251,6 @@ export class Home extends React.Component {
 		);
 	}
 }
+
+// solo le agregue la linea 30 para q se vea el cambio, sino se pone todo null pero siguen las marcas
+// y cambie la 246 pa q sea una arrow function, sino hay q bind it, t acordas?
